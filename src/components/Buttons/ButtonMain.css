@@ -1,0 +1,35 @@
+.btn-main{
+    background-color: #2573DF;
+    border: none;
+    color: #fff;
+    width: 180px;
+    padding: 15px 0 15px 0;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 25px; 
+}
+
+.btn-main:hover{
+    background-color: #1b68d4;    
+}
+
+.btn-blue{
+    background-color: #2573DF;
+    border: none;
+    padding: 12px 45px;
+    font-size: 15px;
+    border-radius: 5%;
+    font-weight: 500;
+    color: #fff;
+}
+
+.btn-border-white{
+    background-color: transparent ;
+    border: 3px solid #fff;
+    border-radius: 5%;
+    padding: 9px 30px;
+    font-size: 15px;
+    font-weight: 400;
+    font-weight: 500;
+    color: #fff;
+}

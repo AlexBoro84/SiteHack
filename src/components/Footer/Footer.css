@@ -1,0 +1,33 @@
+.footer-logo{
+    height: 32px;
+    margin-right: 15px;
+}
+
+footer{
+    -webkit-box-shadow: 1px -8px 27px -8px rgba(0,1,33,0.32);
+    -moz-box-shadow: 1px -8px 27px -8px rgba(0,1,33,0.32);
+    box-shadow: 1px -8px 27px -8px rgba(0,1,33,0.32);
+    height: 40vh;
+    padding: 75px 0;
+}
+
+footer p{
+    color: rgba(255, 255, 255, 0.836);
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.fab{
+    color: #f4f8fff6;
+    font-size: 22px;
+}
+
+.fa-twitter{
+    padding: 0 20px;
+}
+
+.footer_links-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
