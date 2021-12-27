@@ -1,8 +1,9 @@
 import React from 'react'
-import './PopupModal.css'
 import { createPortal } from 'react-dom';
+import './PopupModal.css'
 
-const modalRoot = document.getElementById( 'modal' );
+
+// const modalRoot = document.getElementById( 'modal' );
 
 const PopupModal = ({open, children, onClose}) => {
 
@@ -21,10 +22,6 @@ const PopupModal = ({open, children, onClose}) => {
         document.getElementById('modal')
     )
 }
-
-const mapStateToProps = (state) => ({
-    emailInfo: state.emailCheck  
-})
 
 
 export default PopupModal

@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react'
-import { Container, Col, Row } from 'react-bootstrap'
+import { Container} from 'react-bootstrap'
 import ButtonMain from '../../components/Buttons/ButtonMain'
 import Lottie from 'react-lottie';
 import {useDispatch, useSelector} from 'react-redux'
@@ -115,7 +115,7 @@ const Home = () => {
                                         
                                         <div className='mb-5'>
                                             <div className='leakedData-container'>
-                                                <img src={`https://s2.googleusercontent.com/s2/favicons?domain_url=www.${item.domain}`}/>
+                                                <img src={item.logo}/>
                                                 <div className='ms-4 pt-1'>
                                                     <a rel={'external'} target="_blank" href={`https://www.${item.domain}`}>{item.domain}</a>
                                                     <p> Breach Date: {formateDate(item.breachDate)}</p>
