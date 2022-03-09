@@ -50,7 +50,10 @@ const Home = () => {
         e.preventDefault()
         if(email === ''){
             setEmailError('Please enter email')
-        }else{
+        }else if(emailError){
+            setEmailError('Invalid Email')
+        }
+        else{
             dispatch(emailHackCheckAction(email))
         }
       }
