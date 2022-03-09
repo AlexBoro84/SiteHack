@@ -7,6 +7,10 @@ body{
   font-family: 'Poppins', sans-serif;
 }
 
+textarea:focus, input:focus{
+  outline: none;
+}
+
 .container{
   width: 82vw;
   margin: 0 auto;
@@ -55,6 +59,8 @@ a:hover{
   color: rgba(255, 255, 255, 0.596);
 }
 
+
+
 @media only screen and (max-width: 992px) {
   .container{
     width: 90vw;
@@ -67,6 +73,8 @@ a:hover{
     font-size: 24px;
   }
 }
+
+
 
 
 

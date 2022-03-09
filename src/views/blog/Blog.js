@@ -15,7 +15,7 @@ const Blog = () => {
                     <h2 className='me-4'>Blog</h2> 
                     <div className='h-bar'></div>
                 </div>
-                <h4>Database Breaching In Modern Securit</h4>
+                <h4>Database Breaching In Modern Security</h4>
                 <img className='blog_img-hero' src='./img/blog_Img-1.png'/>   
             </section>
             <section className='section-blog_content'>

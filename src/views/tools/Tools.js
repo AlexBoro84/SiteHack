@@ -11,11 +11,12 @@ import Loader from '../../utils/Loader/Loader'
 const Tools = () => {
 
     const dispatch = useDispatch()
+    const [emailError, setEmailError] = useState('')
 
     const emailInfo = useSelector(state => state.emailCheck)
 
      useEffect(() => {
-            window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
     return () => {
       dispatch(resetStateAction())
     };
@@ -36,8 +37,29 @@ const Tools = () => {
 
       const handleEmailForm = (e) => {
         e.preventDefault()
-        dispatch(emailHackCheckAction(email));
+        if(email === ''){
+            setEmailError('Please enter email')
+        }else{
+            dispatch(emailHackCheckAction(email))
+        }
       }
+
+      const handleEmailChange = (e) => {
+        let inValid = String(e.target.value).toLowerCase().match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+        if(inValid === null){
+            if(e.target.value === ''){
+                setEmailError('')
+            }else{
+                setEmailError('Invalid Email')
+            }
+        }else{
+            setEmailError('')
+        }
+        setEmail(e.target.value)
+      }
+  
 
     return (
         <Container>
@@ -45,7 +67,7 @@ const Tools = () => {
                 <div className='checkEmail_modal'>
                     <h3 className='text-center mb-4'>Has my mail been Hacked ?</h3> 
                     <form className='form_main' >
-                        <input value={email} onChange={(e) => setEmail(e.target.value)} type="text"  placeholder="email"/>
+                        <input  className={`email-input ${emailError ? 'input-error' : ''}`} value={email} onChange={(e) => handleEmailChange(e)} type="text"  placeholder="email"/>
                     </form>
                     <div className='d-flex mt-4'>
                         <div className='me-3'>

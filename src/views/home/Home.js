@@ -7,12 +7,15 @@ import animationData from '../../lottie/data.json';
 import './Home.css'
 import { emailHackCheckAction, resetStateAction } from '../../redux/actions/emailHackCheckAction';
 import Loader from '../../utils/Loader/Loader';
+import { Link } from 'react-router-dom'
+
 
 const Home = () => {
 
     const dispatch = useDispatch()
-
+    
     const emailInfo = useSelector(state => state.emailCheck)
+    const [emailError, setEmailError] = useState('')
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -45,7 +48,11 @@ const Home = () => {
 
       const handleEmailForm = (e) => {
         e.preventDefault()
-        dispatch(emailHackCheckAction(email))
+        if(email === ''){
+            setEmailError('Please enter email')
+        }else{
+            dispatch(emailHackCheckAction(email))
+        }
       }
 
       const formateDate = (date) => {
@@ -56,6 +63,23 @@ const Home = () => {
         setWindowScreenWidth(window.screen.width)
       }
 
+      const handleEmailChange = (e) => {
+        let inValid = String(e.target.value).toLowerCase().match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+        if(inValid === null){
+            if(e.target.value === ''){
+                setEmailError('')
+            }else{
+                setEmailError('Invalid Email')
+            }
+        }else{
+            setEmailError('')    
+        }
+        setEmail(e.target.value)
+      }
+
+
     
     
     return (
@@ -65,8 +89,8 @@ const Home = () => {
                         <div className='mt-10'>
                             <h1>Have I <br/> been Hacked</h1>
                             <p className='hero_p mt-4 mb-5'>
-                                Discover the platform that gives you the freedom to create, 
-                                design, manage and develop your web presence exactly the way you want.
+                                Discover the platform that gives you the freedom to 
+                                check if your email or phone is in a data breach.
                             </p>
                             <ButtonMain clickEvent={scrollToForm} btn_style='btn-main' >
                                 Check Email
@@ -75,7 +99,7 @@ const Home = () => {
                         <div className='lottieHero-img'>
                             <Lottie 
                                 options={defaultOptions}
-                                height={windowScreenWidth > 992 ? 600 : 450}
+                                height={windowScreenWidth > 992 ? 600 : 250}
                                 width={windowScreenWidth > 992 ? 600 : 450}/>
                         </div>
                 </section>
@@ -91,18 +115,22 @@ const Home = () => {
                     </div>
                 </section>
                 <section className='section-hacked_form'>
+                    
                     <h3 className='text-center mb-5'>Has my mail been Hacked ?</h3> 
                     <form className='form_main'>
-                        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email"/>
-                    </form>
+                        <input className={`email-input ${emailError ? 'input-error' : ''}`} type="text" value={email} onChange={(e) => handleEmailChange(e)} placeholder="email" required/>
+                        <p className='error-text'>{emailError}</p>
                         <div className='d-flex mt-4'>
                             <div className='me-3'>
                                 <ButtonMain btn_style='btn-blue' clickEvent={handleEmailForm}>Check</ButtonMain>
                             </div>
                             <div>
-                                <ButtonMain btn_style='btn-border-white'>More Tools</ButtonMain>
+                                <Link to='/tools'>
+                                    <ButtonMain btn_style='btn-border-white'> More Tools</ButtonMain>    
+                                </Link> 
                             </div>
                         </div>  
+                    </form>
                 </section>
                         <div className='leakedData'>
                             {emailInfo.loading ? <div className='text-center my-5'><Loader/></div> : 
@@ -121,7 +149,7 @@ const Home = () => {
                                                     <p> Breach Date: {formateDate(item.breachDate)}</p>
                                                 </div>
                                             </div>
-                                            <p  dangerouslySetInnerHTML={{__html: item.description}} />
+                                            <p dangerouslySetInnerHTML={{__html: item.description}} />
                                         </div>
                                     )): null}
 

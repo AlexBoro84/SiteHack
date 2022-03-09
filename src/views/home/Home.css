@@ -66,12 +66,16 @@ a{
     color: #fff;
 }
 
-.form_main input[type='text']{
+.email-input{
     width: 100%;
     padding: 14px 20px;
     margin: 8px 0;
-    border: none;
+    border: 1px;
     border-radius: 4px;
+}
+
+.input-error{
+    border: 2px solid #f54c4c;
 }
 
 .footer_logo-box{
@@ -99,6 +103,14 @@ a{
     top: 12%;
     right: 8%;
 }
+
+.error-text{
+    font-size: 14px;
+    color: #f54c4c;
+    margin-left: 5px;
+}
+
+
 
 
 @media only screen and (max-width: 992px) {
